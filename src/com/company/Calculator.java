@@ -36,12 +36,13 @@ public class Calculator {
         System.out.println( ANSI_GREEN +  " Приветствуем Вас в программе \"Калькулятор\" " + ANSI_RESET);
         System.out.println("==============================================");
         System.out.println("Доступные команды:");
-        System.out.println( ANSI_GREEN + "ADD *число*");
-        System.out.println("SUBTRACT *число*");
-        System.out.println("MULTIPLY *число*");
-        System.out.println("DIVIDE *число*");
-        System.out.println("POW *число*");
-        System.out.println("SQRT *число*" + ANSI_RESET);
+        System.out.println( ANSI_GREEN + "ADD *число* - Прибавление числа");
+        System.out.println("SUBTRACT *число* - Вычитание числа");
+        System.out.println("MULTIPLY *число* - Умножение числа");
+        System.out.println("DIVIDE *число* - Деление числа");
+        System.out.println("POW *число* - Возведение в степень n");
+        System.out.println("SQRT - Вычисление квадратного корня");
+        System.out.println("SQRTN *число* - Вычисление корня n" + ANSI_RESET);
         System.out.println("Для получения результата введите: " + ANSI_GREEN + "RESULT" + ANSI_RESET);
         System.out.println("==============================================" );
     }
@@ -83,7 +84,7 @@ public class Calculator {
                         sum = Math.pow(sum, num);
                         break;
                     }
-                    case "SQRT": {
+                    case "SQRTN": {
                         sum = Math.pow(sum, 1 / num);
                         break;
                     }
@@ -91,11 +92,13 @@ public class Calculator {
                         System.out.println(msgError);
                     }
                 }
-            } else if(  answer.length == 1 && answer[0].equalsIgnoreCase("Result") ) break;
+            } else if(  answer.length == 1 && answer[0].equalsIgnoreCase("SQRT") ){
+                sum = Math.sqrt(sum);
+            }
+            else if(  answer.length == 1 && answer[0].equalsIgnoreCase("Result") ) break;
             else System.out.println(msgError);
 
         }while( !( answer.length == 1 && answer[0].equalsIgnoreCase("Result") ) );
-
         return sum;
     }
 
