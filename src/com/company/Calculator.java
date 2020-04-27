@@ -22,8 +22,8 @@ public class Calculator {
             decimalPlace = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e){
             System.out.println(msgError);
+            return;
         }
-
 
         getOperation();
         System.out.println("==============================================");
@@ -39,14 +39,18 @@ public class Calculator {
         System.out.println( ANSI_GREEN + "ADD *число*");
         System.out.println("SUBTRACT *число*");
         System.out.println("MULTIPLY *число*");
-        System.out.println("DIVIDE *число*" + ANSI_RESET);
+        System.out.println("DIVIDE *число*");
+        System.out.println("POW *число*");
+        System.out.println("SQRT *число*" + ANSI_RESET);
         System.out.println("Для получения результата введите: " + ANSI_GREEN + "RESULT" + ANSI_RESET);
         System.out.println("==============================================" );
     }
 
     private double getOperation() throws IOException {
         String[] answer;
+        sum = 0;
         do {
+            System.out.format("Текущее значение: " + ANSI_GREEN + "%." + decimalPlace + "f\n"  + ANSI_RESET, sum);
             System.out.println("Введите команду:");
             answer = reader.readLine().split(" ");
             boolean valid = false;
@@ -73,6 +77,14 @@ public class Calculator {
                         } else {
                             System.out.println(ANSI_RED + "На ноль делить нельзя" + ANSI_RESET);
                         }
+                        break;
+                    }
+                    case "POW": {
+                        sum = Math.pow(sum, num);
+                        break;
+                    }
+                    case "SQRT": {
+                        sum = Math.pow(sum, 1 / num);
                         break;
                     }
                     default:{
